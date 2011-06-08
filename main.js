@@ -4,6 +4,7 @@ var Step = require('step'),
   url = require('url'),
   article = 'http://www.youtube.com/watch?v=UvXUkXvunlw',
   rel = 'author',
+  levels = 5,
   foundRelations = [],
   findRels, alreadyFound, lookupProfileRelations;
 
@@ -12,6 +13,9 @@ if (process.argv[2]) {
 }
 if (process.argv[3]) {
   rel = process.argv[3];
+}
+if (process.argv[4]) {
+  levels = parseInt(process.argv[4], 10);
 }
 
 findRels = (function () {
@@ -33,7 +37,7 @@ findRels = (function () {
   parseRels = function (err, window) {
     if (err) throw err;
 
-    var $authors = window.$('a[rel="' + this.rel + '"]'),
+    var $authors = window.$('a[rel~="' + this.rel + '"], head > link[rel~="' + this.rel + '"]'),
       relations = {},
       that = this,
       i, length, $anchor, tmp;
@@ -105,16 +109,22 @@ lookupProfileRelations = function (iterations, callback, err, relations) {
 
   foundRelations = foundRelations.concat(relations);
 
-  console.log("\nFound these new relations on level " + iterations +  ":\n\n" + relations.join("\n") + "\n\n");
-
   if (!iterations || !relations.length) {
+    if (!relations.length) {
+      console.log("\nFound no new relations on level " + iterations +  ".\n\n");
+    }
+
     callback(foundRelations);
   }
   else {
+    console.log("\nFound these new relations on level " + iterations +  ":\n\n" + relations.join("\n") + "\n\n");
+
     findRels(relations, lookupProfileRelations.bind({}, iterations - 1, callback), 'me');
   }
 };
 
-findRels(article, lookupProfileRelations.bind({}, 5, function (relations) {
+foundRelations.push(article);
+
+findRels(article, lookupProfileRelations.bind({}, levels, function (relations) {
   console.log('Summary:' + "\n\n" + relations.join("\n") + "\n\n");
 }), rel);
