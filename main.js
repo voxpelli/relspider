@@ -3,10 +3,16 @@ var Step = require('step'),
   jsdom = require('jsdom'),
   url = require('url'),
   article = 'http://www.youtube.com/watch?v=UvXUkXvunlw',
+  rel = 'author',
   foundRelations = [],
   findRels, alreadyFound, lookupProfileRelations;
 
-//article = 'http://www.nytimes.com/2011/06/09/nyregion/ubs-may-move-back-to-manhattan-from-stamford.html?hp';
+if (process.argv[2]) {
+  article = process.argv[2];
+}
+if (process.argv[3]) {
+  rel = process.argv[3];
+}
 
 findRels = (function () {
   var fetchSite, parseRels, unifyList;
@@ -101,7 +107,7 @@ lookupProfileRelations = function (iterations, callback, err, relations) {
 
   console.log("\nFound these new relations on level " + iterations +  ":\n\n" + relations.join("\n") + "\n\n");
 
-  if (!iterations) {
+  if (!iterations || !relations.length) {
     callback(foundRelations);
   }
   else {
@@ -111,4 +117,4 @@ lookupProfileRelations = function (iterations, callback, err, relations) {
 
 findRels(article, lookupProfileRelations.bind({}, 5, function (relations) {
   console.log('Summary:' + "\n\n" + relations.join("\n") + "\n\n");
-}));
+}), rel);
