@@ -38,7 +38,7 @@ findRels = (function () {
       that = this,
       i, length, $anchor, tmp;
 
-    console.log("...found", $authors.length, '"' + this.rel + '"-relations on "' + this.target + '":');
+    console.log("...found", $authors.length, '"' + this.rel + '"-relations on "' + this.target + '".');
 
     for (i = 0, length = $authors.length; i < length; i++) {
       $anchor = window.$($authors[i]);
