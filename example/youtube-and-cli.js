@@ -1,5 +1,5 @@
 var url = require('url'),
-  spider = require('../lib/relspider'),
+  spider = require('../'),
   articles = ['http://www.youtube.com/watch?v=UvXUkXvunlw'],
   levels = 5,
   directory = {};
