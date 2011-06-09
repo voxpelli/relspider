@@ -1,0 +1,22 @@
+{
+  "name": "relspider",
+  "version": "0.0.1",
+  "description": "A quick proof of concept library for spidering web linking relations like the XFN and  HTML5 author relations.",
+	"author": {
+		"name" : "Pelle Wessman",
+		"email": "pelle@kodfabrik.se",
+		"url"  : "http://kodfabrik.se/"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"jsdom": "> 0.2.0",
+		"html5": ">= 0.2.16",
+		"step": ">= 0.0.4",
+		"underscore": ">= 1.1.6"
+	},
+  "engines":  { "node" : ">=0.4.8" },
+  "main": "./lib/spider",
+  "directories": {
+      "lib": "./lib"
+  }
+}

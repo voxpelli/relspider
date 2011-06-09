@@ -1,5 +1,5 @@
 var url = require('url'),
-  spider = require('./lib/spider'),
+  spider = require('../lib/relspider'),
   articles = ['http://www.youtube.com/watch?v=UvXUkXvunlw'],
   levels = 5,
   directory = {};
@@ -24,7 +24,9 @@ function lookupDeepRelations2(iterations, callback, stop) {
   }
   else {
     console.log('Looking up level', iterations);
-    spider(lookupDeepRelations2.bind({}, iterations - 1, callback), directory);
+    spider(lookupDeepRelations2.bind({}, iterations - 1, callback), {
+      directory : directory
+    });
   }
 }
 
