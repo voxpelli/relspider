@@ -3,6 +3,23 @@ RelSpider
 
 A quick proof of concept NodeJS library for spidering web linking relations like the XFN and  HTML5 author relations.
 
+Install
+--------
+
+Standalone installation:
+
+    git clone http://github.com/flattr/osd-node-relspider.git
+    cd osd-node-relspider
+    npm install
+
+As a library for use within another project:
+
+    git clone http://github.com/flattr/osd-node-relspider.git
+    cd osd-node-relspider
+    npm link
+    cd /path/to/your/project
+    npm link relspider
+
 Example
 --------
 
