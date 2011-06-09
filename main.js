@@ -3,16 +3,18 @@ var Step = require('step'),
   jsdom = require('jsdom'),
   url = require('url'),
   _ = require('underscore'),
-  article = 'http://www.youtube.com/watch?v=UvXUkXvunlw',
+  articles = ['http://www.youtube.com/watch?v=UvXUkXvunlw'],
   levels = 5,
   directory = {},
   lookupRelations2, parseRels2, findRels2;
 
 if (process.argv[2]) {
-  article = process.argv[2];
+  levels = parseInt(process.argv[2], 10);
 }
-if (process.argv[3]) {
-  levels = parseInt(process.argv[3], 10);
+if (process.argv.length > 3) {
+  articles = process.argv.slice(3).map(function (article) {
+    return url.format(url.parse(article));
+  });
 }
 
 parseRels2 = function (rel, window) {
@@ -93,9 +95,6 @@ findRels2 = (function () {
   };
 }());
 
-article = url.format(url.parse(article));
-directory[article] = false;
-
 lookupRelations2 = function (callback) {
   Step(
     function lookup() {
@@ -105,19 +104,47 @@ lookupRelations2 = function (callback) {
       Object.keys(directory).forEach(function (page) {
         var callback;
 
-        if (directory[page] === false) {
+        if (!directory[page].fetched && !directory[page].fetching) {
           callback = group();
-          directory[page] = true;
+          directory[page].fetching = true;
           lookup = true;
 
           findRels2(page, function (result) {
-              if (_.isBoolean(directory[page])) {
-                directory[page] = {};
-              }
-              _.extend(directory[page], result);
-              Object.keys(result).forEach(function (key) {
-                Object.keys(result[key]).forEach(function (newPage) {
-                  directory[newPage] = directory[newPage] || false;
+              directory[page].fetched = true;
+              delete directory[page].fetching;
+              directory[page].relations = directory[page].relations || {};
+
+              Object.keys(result).forEach(function (rel) {
+                directory[page].relations[rel] = directory[page].relations[rel] || {};
+
+                Object.keys(result[rel]).forEach(function (relation) {
+                  if (page === relation) {
+                    return;
+                  }
+
+                  directory[page].relations[rel][relation] = result[rel][relation];
+
+                  directory[relation] = directory[relation] || {};
+
+                  directory[relation].relationsReverse = directory[relation].relationsReverse || {};
+                  directory[relation].relationsReverse[rel] = directory[relation].relationsReverse[rel] || [];
+
+                  if (directory[relation].relationsReverse[rel].indexOf(page) === -1) {
+                    directory[relation].relationsReverse[rel].push(page);
+                  }
+
+                  if (directory[page].relationsReverse && directory[page].relationsReverse[rel] && directory[page].relationsReverse[rel].indexOf(relation) !== -1) {
+                    directory[page].relationsBidirectional = directory[page].relationsBidirectional || {};
+                    directory[page].relationsBidirectional[rel] = directory[page].relationsBidirectional[rel] || [];
+
+                    directory[relation].relationsBidirectional = directory[relation].relationsBidirectional || {};
+                    directory[relation].relationsBidirectional[rel] = directory[relation].relationsBidirectional[rel] || [];
+
+                    if (directory[page].relationsBidirectional[rel].indexOf(relation) === -1) {
+                      directory[page].relationsBidirectional[rel].push(relation);
+                      directory[relation].relationsBidirectional[rel].push(page);
+                    }
+                  }
                 });
               });
 
@@ -156,6 +183,10 @@ function lookupDeepRelations2(iterations, callback, stop) {
     lookupRelations2(lookupDeepRelations2.bind({}, iterations - 1, callback));
   }
 }
+
+articles.forEach(function (article) {
+  directory[article] = {};
+});
 
 lookupDeepRelations2(levels, function () {
   console.log("\nDone!\n");
