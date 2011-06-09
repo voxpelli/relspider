@@ -82,7 +82,7 @@ findRels2 = (function () {
     console.log('Fetching', target, '...');
     jsdom.env(
       target,
-      ['http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js'],
+      ['file://' + __dirname + '/lib/jquery.js'],
       {parser: HTML5},
       responseHandler.bind({
         target : target,
