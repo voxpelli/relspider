@@ -93,6 +93,7 @@ findRels2 = (function () {
   };
 }());
 
+article = url.format(url.parse(article));
 directory[article] = false;
 
 lookupRelations2 = function (callback) {
