@@ -110,7 +110,7 @@ lookupRelations2 = function (callback) {
           lookup = true;
 
           findRels2(page, function (result) {
-              directory[page].fetched = true;
+              directory[page].fetched = Date.now();
               delete directory[page].fetching;
               directory[page].relations = directory[page].relations || {};
 
