@@ -14,7 +14,7 @@ Example script for fetching and counting all "author" and "me" relations from ht
     relspider(function () {
       console.log('Found', result.length - 1, 'new relations');
     }, {
-      directory : result
+      dictionary : result
     });
 
 A full example can be found at example/youtube-and-cli.js. It by defaults fetches 5 levels deep of relations starting from my (Pelle's) only YouTube video. It also takes command line arguments - the first one being a value for how many levels deep to look for relations and the rest one being URL:s which replaces the YouTube video as the starting point of the search.

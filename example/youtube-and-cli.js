@@ -2,7 +2,7 @@ var url = require('url'),
   spider = require('../'),
   articles = ['http://www.youtube.com/watch?v=UvXUkXvunlw'],
   levels = 5,
-  directory = {};
+  dictionary = {};
 
 if (process.argv[2]) {
   levels = parseInt(process.argv[2], 10);
@@ -25,17 +25,17 @@ function lookupDeepRelations2(iterations, callback, stop) {
   else {
     console.log('Looking up level', iterations);
     spider(lookupDeepRelations2.bind({}, iterations - 1, callback), {
-      directory : directory
+      dictionary : dictionary
     });
   }
 }
 
 articles.forEach(function (article) {
-  directory[article] = {};
+  dictionary[article] = {};
 });
 
 lookupDeepRelations2(levels, function () {
   console.log("\nDone!\n");
-  console.log("JSON:\n\n" + JSON.stringify(directory) + "\n");
-  console.log('Summary:' + "\n\n" + Object.keys(directory).join("\n") + "\n\n");
+  console.log("JSON:\n\n" + JSON.stringify(dictionary) + "\n");
+  console.log('Summary:' + "\n\n" + Object.keys(dictionary).join("\n") + "\n\n");
 });
