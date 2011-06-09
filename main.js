@@ -51,6 +51,10 @@ findRels2 = (function () {
     var result = {},
       response = this;
     if (err || !window) {
+      console.log('Error in response from "' + this.target + '":');
+      err.forEach(function (err) {
+        console.log(err.message);
+      });
       response.callback(result);
     }
     else {
