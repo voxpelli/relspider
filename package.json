@@ -19,7 +19,7 @@
     "memjs": ">=0.0.11",
     "request": ">=2.9.203",
     "robots": ">=0.7.2",
-    "connect": ">= 0.6.7"
+    "express": ">= 3.0.0rc3"
   },
   "engines":  {
     "node": "0.8.x",
