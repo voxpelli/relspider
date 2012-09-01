@@ -21,6 +21,10 @@ A web crawler that indexes relations between the different profiles of users onl
 
 * Refreshing the contents of the index
 
+## Roadmap
+
+Currently not sure what the next step will be here. Will perhaps join up with a few others to make this into a properly hosted service or will see it adopted, maintained and hosted by others in the community. I myself will now start studying at the university and thus in at least short term have no time to invest heavily in this all by myself.
+
 ## Run it
 
 ### Locally
@@ -96,6 +100,10 @@ Used to schedule a site for crawling. Often you want /api/lookup instead.
 #### Response
 
 HTTP 202 with a message of success!
+
+## License
+
+MIT [http://voxpelli.mit-license.org](http://voxpelli.mit-license.org)
 
 ## Demo
 
