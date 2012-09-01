@@ -96,3 +96,7 @@ Used to schedule a site for crawling. Often you want /api/lookup instead.
 #### Response
 
 HTTP 202 with a message of success!
+
+## Demo
+
+For the moment there is an open demo up and running on a free [Heroku](http://www.heroku.com/) instance with all the above recommended add-ons: http://relspider.herokuapp.com/
