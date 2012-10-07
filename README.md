@@ -3,7 +3,7 @@ RelSpider
 
 A web crawler that indexes relations between the different profiles of users online and ties them together into an _identity graph_ that's similar to a _social graph_ but instead of mapping relations between different identities it maps the relation between different representations of the same identity.
 
-## Tech stuff
+## Tech stuff (or just a big huge list of different cool aspects of this script)
 
 * Crawls link-tags and a-tags in HTML sites that have a "me"-relation. The "me"-relation is defined by the mother of all [Microformats](http://microformats.org/) – the [XFN](http://gmpg.org/xfn/and/#idconsolidation) – and is widely supported by big sites like Twitter, Google+, GitHub, Lanyrd etc.
 * RelSpider uses a combination of [PostgreSQL](http://www.postgresql.org/) and [Neo4j](http://neo4j.org/) to save all relations it finds.
@@ -16,6 +16,7 @@ A web crawler that indexes relations between the different profiles of users onl
 * Thanks [PostgreSQL](http://www.postgresql.org/) and [Memcached](http://memcached.org/) multiple workers of RelSpider can be spawned without them going nuts and fetching the same pages multiple times. Using PostgreSQL a worker is always reserving a page for itself for 10 minutes prior to fetching it and thanks to Memcache it doesn't have to refetch a robots.tx-file if another worker has already fetched it in the last day.
 * Supports a configurable number of parallel fetches and whenever all fetches isn't being utilized it scales down accordingly to go easy on the database.
 * Modular - the crawler can be used separate from the API and web, one can easily replace those with ones own creations.
+* Supports canonical-links and permanent redirects - saves the original URL:s as alias of their targets and don't include the aliases in results
 * Refreshes nodes in its index every 24 hours
 * Nodes that hasn't themselves been requested in the last week and that has no incoming relations is cleaned up and removed to keep size of index down
 
