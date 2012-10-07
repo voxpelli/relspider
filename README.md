@@ -16,10 +16,8 @@ A web crawler that indexes relations between the different profiles of users onl
 * Thanks [PostgreSQL](http://www.postgresql.org/) and [Memcached](http://memcached.org/) multiple workers of RelSpider can be spawned without them going nuts and fetching the same pages multiple times. Using PostgreSQL a worker is always reserving a page for itself for 10 minutes prior to fetching it and thanks to Memcache it doesn't have to refetch a robots.tx-file if another worker has already fetched it in the last day.
 * Supports a configurable number of parallel fetches and whenever all fetches isn't being utilized it scales down accordingly to go easy on the database.
 * Modular - the crawler can be used separate from the API and web, one can easily replace those with ones own creations.
-
-### Not yet supported
-
-* Refreshing the contents of the index
+* Refreshes nodes in its index every 24 hours
+* Nodes that hasn't themselves been requested in the last week and that has no incoming relations is cleaned up and removed to keep size of index down
 
 ## Roadmap
 
@@ -96,6 +94,18 @@ Used to schedule a site for crawling. Often you want /api/lookup instead.
 #### Parameters
 
 * `url` - *required* the URL to do schedule to crawl.
+
+#### Response
+
+HTTP 202 with a message of success!
+
+### /api/refresh
+
+Used to force the refresh of a node. Useful when debugging and you don't want to wait 24 hours for the next scheduled refresh. Won't ever refresh more often than every 1 minute though.
+
+#### Parameters
+
+* `url` - *required* the URL to do schedule for refresh.
 
 #### Response
 
