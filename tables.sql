@@ -34,6 +34,7 @@ DROP TABLE IF EXISTS "urls";
 CREATE TABLE "urls" (
 	"url" varchar(1024) NOT NULL,
 	"node" int4,
+	"host" varchar(255) NOT NULL,
 	"added" timestamp(6) NOT NULL,
 	"requested" timestamp(6) NULL,
 	"fetched" timestamp(6) NULL,
