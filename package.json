@@ -16,7 +16,7 @@
     "underscore": ">=1.4.1 <1.5",
     "jsdom": ">=0.2.15 <0.3",
     "node-cache": ">=0.3.2 <0.4",
-    "memjs": "git://github.com/voxpelli/node-memjs.git#expire-arg-fix",
+    "genericcache": "*",
     "request": ">=2.11.4 <2.12",
     "robots": ">=0.7.2 <0.8",
     "express": ">=3.0.0rc4 <3.1",
