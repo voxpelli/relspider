@@ -15,7 +15,6 @@
     "step": "0.0.5",
     "underscore": ">=1.4.1 <1.5",
     "jsdom": ">=0.2.15 <0.3",
-    "node-cache": ">=0.3.2 <0.4",
     "genericcache": "*",
     "request": ">=2.11.4 <2.12",
     "robots": ">=0.7.2 <0.8",
