@@ -19,7 +19,9 @@
     "memjs": "git://github.com/voxpelli/node-memjs.git#expire-arg-fix",
     "request": ">=2.11.4 <2.12",
     "robots": ">=0.7.2 <0.8",
-    "express": ">=3.0.0rc4 <3.1"
+    "express": ">=3.0.0rc4 <3.1",
+    "metrics": ">=0.1.6 <0.2",
+    "metrics-statsmix": "*"
   },
   "engines":  {
     "node": "0.8.x",
