@@ -20,7 +20,10 @@
     "robots": ">=0.7.2 <0.8",
     "express": ">=3.0.0rc4 <3.1",
     "metrics": ">=0.1.6 <0.2",
-    "metrics-statsmix": "*"
+    "metrics-statsmix": "*",
+    "nodetime": "*",
+    "timekit": "*",
+    "v8tools": "*"
   },
   "engines":  {
     "node": "0.8.x",
