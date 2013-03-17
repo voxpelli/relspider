@@ -9,24 +9,23 @@
   },
   "license": "MIT",
   "dependencies": {
-    "npm": "1.1.x",
-    "pg": ">=0.8.4 <0.9",
-    "neo4j": ">=0.2.19 <0.3",
+    "pg": ">=0.14.1 <0.15",
+    "neo4j": "git://github.com/flipside/node-neo4j.git#6b29443cad5990689a16a2e39bbbb1a87e536f39",
     "step": "0.0.5",
     "underscore": ">=1.4.1 <1.5",
-    "jsdom": ">=0.2.15 <0.3",
+    "jsdom": ">=0.5.3 <0.6",
     "genericcache": "*",
-    "request": ">=2.11.4 <2.12",
+    "request": ">=2.16.6 <2.17",
     "robots": ">=0.7.2 <0.8",
-    "express": ">=3.0.0rc4 <3.1",
+    "express": ">=3.1.0 <3.2",
     "metrics": ">=0.1.6 <0.2",
     "nodetime": "*",
     "timekit": "*",
     "v8tools": "*"
   },
   "engines":  {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": "0.10.x",
+    "npm": "1.2.x"
   },
   "main": "./lib/relspider",
   "directories": {
