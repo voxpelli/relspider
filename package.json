@@ -21,8 +21,7 @@
     "metrics": ">=0.1.6 <0.2"
   },
   "engines":  {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "0.10.x"
   },
   "main": "./lib/relspider",
   "directories": {
