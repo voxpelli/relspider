@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "pg": ">=0.14.1 <0.15",
-    "neo4j": "git://github.com/flipside/node-neo4j.git#6b29443cad5990689a16a2e39bbbb1a87e536f39",
+    "neo4j": "^1.1.0",
     "step": "0.0.5",
     "underscore": ">=1.4.1 <1.5",
     "jsdom": ">=0.5.3 <0.6",
