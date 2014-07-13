@@ -22,7 +22,9 @@ A web crawler that indexes relations between the different profiles of users onl
 
 ## Roadmap
 
-Currently not sure what the next step will be here. Will perhaps join up with a few others to make this into a properly hosted service or will see it adopted, maintained and hosted by others in the community. I myself will now start studying at the university and thus in at least short term have no time to invest heavily in this all by myself.
+* Better recrawl mechanism
+* Parse and save more interesting data from pages
+* Investigate optional social graph parsing (not primary focus as social graphs are so interconnected that you easily end up crawling half of the internet)
 
 ## Run it
 
@@ -36,7 +38,7 @@ RelSpider is built to work well with a Heroku-like setup and therefor uses `fore
 
 Running on Heroku is easy - you basically just push the code up there and you're of. You can read more about that in their [general quick start guide](https://devcenter.heroku.com/articles/quickstart) and then their [Node.js quick start guide](https://devcenter.heroku.com/articles/nodejs).
 
-To avoid having to configure anything it is recommended to use the [PostgreSQL](https://addons.heroku.com/heroku-postgresql) and [Neo4j](https://addons.heroku.com/neo4j) add-ons. It's also recommended to use the [Memcache](https://addons.heroku.com/memcache) - at least if you ever want to run more than one process.
+To avoid having to configure anything it is recommended to use the [PostgreSQL](https://addons.heroku.com/heroku-postgresql) and [GrapheneDB](https://addons.heroku.com/graphenedb) add-ons. It's also recommended to use the [Memcache](https://addons.heroku.com/memcache) - at least if you ever want to run more than one process.
 
 This script can be run on Heroku for free in small scale - even with all the recommended add-ons added.
 
@@ -52,7 +54,7 @@ When used with [Heroku](http://www.heroku.com/) it will work automatically if th
 
 ### Optional
 
-* `NEO4J_URL` - how to connect to your Neo4j database. Defaults to `http://localhost:7474`. Provided by [Neo4j Heroku Add-on](https://addons.heroku.com/neo4j).
+* `NEO4J_URL` - how to connect to your Neo4j database. Defaults to `http://localhost:7474`. Provided by [GrapheneDB Heroku Add-on](https://addons.heroku.com/graphenedb).
 * `RELSPIDER_API_USER="foo"` - used with `RELSPIDER_API_PASS` to lock down the API with HTTP Authentication. Default is to require no authentication.
 * `RELSPIDER_API_PASS="bar"` - see `RELSPIDER_API_USER`
 * `RELSPIDER_PARALLEL="30"` - the number of parallel fetches per process, never will more fetches than these be made. Defaults to `30` parallel fetches.
@@ -118,4 +120,20 @@ MIT [http://voxpelli.mit-license.org](http://voxpelli.mit-license.org)
 
 ## Demo
 
-For the moment there is an open demo up and running on a free [Heroku](http://www.heroku.com/) instance with all the above recommended add-ons: http://relspider.herokuapp.com/
+Sometimes there is an open demo up and running on a free [Heroku](http://www.heroku.com/) instance with all the above recommended add-ons: http://relspider.herokuapp.com/ 
+
+## Changelog
+
+### 0.2.0
+
+Big refactoring, among other things:
+
+* Separated up logic into more files
+* Moved from the pg-library to the knex-library for interacting with Postgres
+* Added some simple tests
+* Added some linting
+
+New features:
+
+* Added throttling based on IP in addition to host names
+* Experimental social graph indexing and feed finding
