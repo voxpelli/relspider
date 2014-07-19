@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - "0.10"
   - "0.11"
+before_install:
+  - sh test/start-neo4j.sh
 before_script:
   - npm install -g grunt-cli
   - psql -c 'create database relspider_test;' -U postgres
@@ -12,5 +14,3 @@ matrix:
     - node_js: "0.11"
 addons:
   postgresql: "9.3"
-services:
-  - neo4j
