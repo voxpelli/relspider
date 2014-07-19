@@ -12,3 +12,5 @@ matrix:
     - node_js: "0.11"
 addons:
   postgresql: "9.3"
+services:
+  - neo4j
