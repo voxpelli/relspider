@@ -23,7 +23,6 @@
     "promise": "^5.0.0",
     "request": "~2.37.0",
     "robots": "^0.9.4",
-    "step": "0.0.5",
     "underscore": "^1.6.0",
     "verror": "^1.4.0"
   },
