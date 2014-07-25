@@ -34,6 +34,7 @@
     "lib": "./lib"
   },
   "scripts": {
+    "start": "node lib/relspider-web.js",
     "test": "grunt",
     "install-schema": "node lib/install-schema.js",
     "migrate-schema": "./node_modules/.bin/knex migrate:latest",
