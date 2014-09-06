@@ -3,6 +3,14 @@ RelSpider
 
 A web crawler that indexes relations between the different profiles of users online and ties them together into an _identity graph_ that's similar to a _social graph_ but instead of mapping relations between different identities it maps the relation between different representations of the same identity.
 
+## State of current refactored master (0.2.0)
+
+Things left to be done in the refactoring:
+
+* Remove the added Bookshelf code and just go with pure Knex.js instead
+* Ensure that the README is up to date
+* There's likely going to be a GitHub milestone created for this as well so check that one as well
+
 ## Tech stuff (or just a big huge list of different cool aspects of this script)
 
 * Crawls link-tags and a-tags in HTML sites that have a "me"-relation. The "me"-relation is defined by the mother of all [Microformats](http://microformats.org/) – the [XFN](http://gmpg.org/xfn/and/#idconsolidation) – and is widely supported by big sites like Twitter, Google+, GitHub, Lanyrd etc.
