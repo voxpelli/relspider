@@ -21,7 +21,7 @@
     "opml-generator": "^1.0.2",
     "pg.js": "^3.3.0",
     "promise": "^5.0.0",
-    "request": "~2.37.0",
+    "request": "~2.88.2",
     "robots": "^0.9.4",
     "underscore": "^1.6.0",
     "verror": "^1.4.0"
